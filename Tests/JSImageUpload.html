@@ -1,0 +1,101 @@
+<!--  
+	Geschrieben von Florian Loch am 21.10.2013,
+	möglich durch folgende Seiten (auf denen ich mich auch teilweise bedient habe):
+	- http://www.html5rocks.com/de/tutorials/file/dndfiles/
+	- https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications
+	- https://developer.mozilla.org/en-US/docs/Web/API/FileList
+-->
+
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script language="javascript">
+			$(document).ready(function () {
+				$("#files").change(function (oEvt) {
+					handleFilesSelected(oEvt, false);
+				});
+				
+				// Setup the dnd listeners.
+				var dropZone = document.getElementById('dropZone');
+				dropZone.addEventListener('dragover', handleDragOver, false);
+				dropZone.addEventListener('drop', function (oEvt) {
+					handleFilesSelected(oEvt, true);
+				}, false);				
+			});
+		
+			var imgs = new Array();
+			
+			function handleFilesSelected(oEvt, drag) {
+				var files = oEvt.target.files; //Get a FileList that contains the selected files	
+				if (drag) {
+					files = oEvt.dataTransfer.files;
+					
+					oEvt.stopPropagation();
+					oEvt.preventDefault();
+				}
+				
+				var out;
+				for (var i = 0; i < files.length; i++) {
+					var fR = new FileReader();
+					
+					fR.onload = (function (num) {
+						return function(oEvt) {
+							imgs[num] = "<div id='" + num + "'><img src='" + oEvt.target.result + "'></div>";
+							console.log(num);
+							refreshSelectedImgList();
+						}
+					})(i);
+					
+					fR.readAsDataURL(files[i]);
+				}
+			}
+			
+			function handleDragOver(evt) {
+				evt.stopPropagation();
+				evt.preventDefault();
+				evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+			}			
+			
+			function refreshSelectedImgList() {
+				$("#output").fadeOut(400, function () {
+					console.log("Teste!");
+					$("#output").html("");
+					$(imgs.join("")).appendTo($("#output"));
+					$("#output").fadeIn(400, function () {});
+				});
+						
+			}
+		
+		</script>
+		<style>
+			#output div {
+				float: left;
+				background: grey;
+				margin: 10px;
+			}
+			
+			#output img {
+				width: 200px;	
+			}
+			
+			.clearer {
+				clear: both;	
+			}
+			
+			#dropZone {
+				border: dashed black 2px; 
+				width: 200px; height: 100px;	
+				margin: 10px;
+				color: grey;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="dropZone">Ziehe eine Datei hierher...</div>
+		<input type="file" id="files" name="files[]" multiple />
+		<div id="output"></div>
+		<div class="clearer"></div>
+	</body>
+	
+</html>
