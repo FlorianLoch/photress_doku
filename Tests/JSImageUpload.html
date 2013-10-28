@@ -40,7 +40,9 @@
 					
 					fR.onload = (function (num) {
 						return function(oEvt) {
-							imgs[num] = "<div id='" + num + "'><img src='" + oEvt.target.result + "'></div>";
+							var obj = $("<div id='" + num + "'><img src='" + oEvt.target.result + "'></div>");
+							console.log(obj);
+							imgs[num] = obj;
 							console.log(num);
 							refreshSelectedImgList();
 						}
@@ -60,10 +62,24 @@
 				$("#output").fadeOut(400, function () {
 					console.log("Teste!");
 					$("#output").html("");
-					$(imgs.join("")).appendTo($("#output"));
+					imgs.forEach(function (elem) {
+						elem.appendTo($("#output")).click(function (oEvt) {
+							$(oEvt.target).animate({
+								opacity: 0.0
+							}, function () {
+								$(oEvt.target).hide();
+							});
+						});
+					});
 					$("#output").fadeIn(400, function () {});
 				});
 						
+			}
+			
+			 Array.prototype.forEach = function (fnFunc) {
+				for (var i = 0; i < this.length; i++) {
+					fnFunc(this[i]);
+				}
 			}
 		
 		</script>

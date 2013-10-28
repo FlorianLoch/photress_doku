@@ -1,7 +1,12 @@
 Diese Punkte sollten als nächste angegangen werden:
-- 	Festlegung: Welche Daten benötigen wir bei der Registrierung? Brauchen wir einen Benutzernamen, wenn wir die 
-	E-Mail-Adresse als eindeutigen Schlüssel haben? Definitv brauchen wir den tatsächlichen Namen.
-	Land und Adresse wären weiterhin vermutlich auch sinnvoll -> Rechtliche Lage abprüfen!
+- 	Festlegung: Welche Daten benötigen wir bei der Registrierung? 
+	Brauchen wir einen Benutzernamen, wenn wir die 
+	E-Mail-Adresse als eindeutigen Schlüssel haben? 
+	Definitv brauchen wir den tatsächlichen Namen.
+	Land und Adresse wären weiterhin vermutlich auch sinnvoll 
+	-> Rechtliche Lage abprüfen!
 - 	5 x Use-Case
-- 	5 x Gherkin
+- 	5 x Gherkin-> á 2 Scenarios
 - 	5 x Mockup 
+
+v1.1 @author Benny
