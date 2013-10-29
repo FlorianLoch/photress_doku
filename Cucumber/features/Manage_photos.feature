@@ -3,7 +3,7 @@ As a Admin of hosted gallery
 I want to organize photos in albums
 so that I can manage my photos in albums.
 
-	Scenario: create albums
+	Scenario: create album
 	Given I am logged in
 	And I am on the managing page
 	When I click on "create new album"

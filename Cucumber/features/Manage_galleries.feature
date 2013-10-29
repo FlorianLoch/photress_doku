@@ -10,7 +10,7 @@ Feature: Manage_galleries_(CRUD)
 			And I navigated to the gallery list
 		When the page becomes display
 			And all data has been loaded
-		Then the container with id "galleries_list" contains a list of my galleries
+		Then "galleries_list" contains a list of my galleries
 		
 	Scenario: Listing galleries as owner of a instance
 		Given I am hosting my own instance
@@ -19,4 +19,4 @@ Feature: Manage_galleries_(CRUD)
 			And I navigated to the gallery list
 		When the page becomes display
 			And all data has been loaded
-		Then the container with id "galleries_list" contains a list of all galleries hosted on my instance		
+		Then "galleries_list" contains a list of all galleries hosted on my instance		
