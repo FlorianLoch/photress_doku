@@ -19,4 +19,4 @@ Feature: Manage_galleries_(CRUD)
 			And I navigated to the gallery list
 		When the page becomes display
 			And all data has been loaded
-		Then "galleries_list" contains a list of all galleries hosted on my instance		
+		Then "galleries_list" contains a list of all galleries hosted on my instance
